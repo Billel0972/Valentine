@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine</title>
+    <style>
+        body {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            background-color: #ffb6c1; /* Rose clair uni */
+            color: #fff;
+            padding: 50px;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .image-container {
+            margin: 20px auto;
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            animation: zoomIn 2s ease-in-out;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Recadre automatiquement pour s'adapter au cadre */
+        }
+        button {
+            font-size: 1.5em;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Dancing Script', cursive;
+        }
+        #yes {
+            background-color: #ff1493;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255,20,147,0.4);
+        }
+        #yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(255,20,147,0.6);
+        }
+        #no {
+            background-color: #dc143c;
+            color: white;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(220,20,60,0.4);
+        }
+        #no:hover {
+            transform: scale(1.05);
+        }
+        /* Cœurs flottants */
+        .heart {
+            position: absolute;
+            font-size: 2em;
+            color: #ff69b4;
+            animation: float 6s infinite linear;
+            opacity: 0.7;
+        }
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .heart:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .heart:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .heart:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .heart:nth-child(7) { left: 70%; animation-delay: 6s; }
+        .heart:nth-child(8) { left: 80%; animation-delay: 7s; }
+        .heart:nth-child(9) { left: 90%; animation-delay: 8s; }
+        .heart:nth-child(10) { left: 95%; animation-delay: 9s; }
+
+        /* GIF apparaissant après clic sur Oui */
+        .gif-container {
+            position: fixed; /* Utilise fixed pour un centrage parfait */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 300px;
+            display: none; /* Caché par défaut */
+            z-index: 10; /* Au-dessus des autres éléments */
+        }
+        .gif-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Recadre si nécessaire */
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* Nouveau titre apparaissant au milieu après clic sur Oui */
+        .success-title {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            font-size: 2.5em;
+            color: #fff;
+            display: none; /* Caché par défaut */
+            animation: fadeInSimple 1s ease-in-out;
+            z-index: 15;
+            text-align: center; /* Centre le texte */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInSimple {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* Media queries pour la responsivité mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px; /* Réduit le padding sur mobile */
+            }
+            h1 {
+                font-size: 2em; /* Réduit la taille du titre principal */
+            }
+            .image-container {
+                width: 250px; /* Réduit la largeur de l'image */
+                height: 150px; /* Réduit la hauteur de l'image */
+            }
+            button {
+                font-size: 1.2em; /* Réduit la taille des boutons */
+                padding: 10px 20px; /* Réduit le padding des boutons */
+            }
+            .gif-container {
+                width: 300px; /* Réduit la taille du GIF */
+                height: 200px; /* Réduit la hauteur du GIF */
+            }
+            .success-title {
+                font-size: 1.8em; /* Réduit la taille du titre de succès */
+                top: 10px; /* Ajuste la position en haut */
+            }
+            .heart {
+                font-size: 1.5em; /* Réduit la taille des cœurs flottants */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cœurs flottants -->
+    <div class="heart">❤️</div>
+    <div class="heart">💖</div>
+    <div class="heart">💕</div>
+    <div class="heart">🌹</div>
+    <div class="heart">💘</div>
+    <div class="heart">❤️</div>
+    <div class="heart">💖</div>
+    <div class="heart">💕</div>
+    <div class="heart">🌹</div>
+
+    <h1>Veux-tu être ma Valentine, Sofia ?</h1>
+    
+    <!-- Image de roses recadrée -->
+    <div class="image-container">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmtmZGFucDRrYnlibXBxajZ1OXI2ZDlrN2wxbnZxejl6YW96ZXViYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/8QbwUh40Hl96yMgvOx/giphy.gif" alt="Roses romantiques">
+    </div>
+    
+    <button id="yes">Oui</button>
+    <button id="no">Non</button>
+
+    <!-- Nouveau titre au milieu après clic sur Oui -->
+    <h1 class="success-title" id="successTitle">Ta Meilleure Décision !</h1>
+
+    <!-- Conteneur pour le GIF centré -->
+    <div class="gif-container" id="gifContainer">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2U5dmZ3dncweGdhbnFlazllZjdyZm5qeXI4dnB6MGUxOTdxY3NtNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/cXblnKXr2BQOaYnTni/giphy.gif" alt="Gars content et confiant">
+    </div>
+
+    <script>
+        const noButton = document.getElementById('no');
+        const yesButton = document.getElementById('yes');
+        const gifContainer = document.getElementById('gifContainer');
+        const successTitle = document.getElementById('successTitle');
+
+        noButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 150);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+            noButton.style.position = 'absolute';
+            noButton.style.transition = 'all 0.5s ease';
+        });
+
+        yesButton.addEventListener('click', () => {
+            // Cache les boutons, le titre et l'image
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+            document.querySelector('h1').style.display = 'none';
+            document.querySelector('.image-container').style.display = 'none';
+
+            // Affiche le titre de succès au milieu
+            successTitle.style.display = 'block';
+
+            // Affiche le GIF au centre
+            gifContainer.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
